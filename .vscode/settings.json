@@ -1,0 +1,4 @@
+{
+	"intelephense.diagnostics.enable": false,
+	"intelephense.diagnostics.run": "onSave"
+}
