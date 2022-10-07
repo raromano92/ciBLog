@@ -3,3 +3,9 @@
   <?php echo $post['body']; ?>
   <small class="post-date">Posted on: <?php echo $post['created_at']; ?></small><br />
 </div>
+
+<hr>
+
+<?php echo form_open('/posts/delete/' . $post['id']); ?>
+<input type="submit" value="Delete" class="btn btn-danger">
+</form>
