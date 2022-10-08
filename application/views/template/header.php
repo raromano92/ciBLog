@@ -4,6 +4,7 @@
   <title>ciBLog</title>
   <link rel="stylesheet" href="https://bootswatch.com/3/flatly/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
+  <script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/classic/ckeditor.js"></script>
 </head>
 
 <body>
