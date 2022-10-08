@@ -56,4 +56,9 @@ class Posts extends CI_Controller {
     $this->load->view('posts/edit', $data);
     $this->load->view('template/footer');
   }
+
+  public function update() {
+    $this->post_model->update_post();
+    redirect('posts');
+  }
 }
