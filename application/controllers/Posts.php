@@ -36,10 +36,29 @@ class Posts extends CI_Controller {
       $this->load->view('posts/create', $data);
       $this->load->view('template/footer');
     } else {
-      $this->post_model->create_post();
+      // Upload Image
+      $config['upload_path'] = './assets/images/posts/';
+      $config['allowed_types'] = 'gif|jpg|png';
+      $config['max_size'] = '2048';
+      $config['maw_width'] = '500';
+      $config['max_height'] = '500';
+
+      $this->load->library('upload', $config);
+
+      if (!$this->upload->do_upload()) {
+        $errors = array('error' => $this->upload->display_errors());
+        $post_image = 'noimage.jpg';
+      } else {
+        $data = array('upload_data' => $this->upload->data());
+        $post_image = $_FILES['userfile']['name'];
+      }
+
+
+      $this->post_model->create_post($post_image);
       redirect('posts');
     }
   }
+
   public function delete($id) {
     $this->post_model->delete_post($id);
     redirect('posts');
@@ -47,6 +66,8 @@ class Posts extends CI_Controller {
 
   public function edit($slug) {
     $data['post'] = $this->post_model->get_posts($slug);
+
+    $data['categories'] = $this->post_model->get_categories();
 
     if (empty($data['post'])) {
       show_404();
